@@ -3,7 +3,11 @@
 Create React App
 Configured tailwind css
 Header
+Routing of form
 Login Form
+    sign in / sign up
+form validation
+useRef Hook
 
 # Netflix design
 
