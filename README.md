@@ -8,6 +8,9 @@ Login Form
     sign in / sign up
 form validation
 useRef Hook
+firebase setup
+deployment in firebase
+create sign up user account
 
 # Netflix design
 

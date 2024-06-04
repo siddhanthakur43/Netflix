@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react'
 import Header from '../Header/Header'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { checkValidData } from '../../utils/validateData'
+import { auth } from '../../utils/firebase';
 
 const Login = () => {
 
   const [isSignInForm, setIsSignInForm] = useState(true)
-  const [errorMessage, setErrorMessage] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('')
   const email = useRef(null);
   const password = useRef(null)
 
@@ -13,10 +15,39 @@ const Login = () => {
     setIsSignInForm(!isSignInForm)
   }
   const handleValidData = () => {
-    console.log(email.current.value);
-    console.log(password.current.value);
     const msg = checkValidData(email.current.value, password.current.value);
     setErrorMessage(msg);
+    if (msg) return;
+
+    //Sign In/Sign Up logic
+    if (!isSignInForm) {
+      //SignUp Logic
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed up 
+          const user = userCredential.user;
+          console.log(user);
+        }).catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    }
+    else {
+      //Sign In Logic
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + '-' + errorMessage)
+        });
+
+    }
   }
   return (
     <div>
@@ -24,7 +55,9 @@ const Login = () => {
       <div className='absolute'>
         <img alt='background' src='https://assets.nflxext.com/ffe/siteui/vlv3/dd4dfce3-1a39-4b1a-8e19-b7242da17e68/86742114-c001-4800-a127-c9c89ca7bbe4/IN-en-20240527-popsignuptwoweeks-perspective_alpha_website_large.jpg' />
       </div>
-      <form onSubmit={(e) => e.preventDefault()} className='absolute p-12 w-3/12 bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-80'>
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className='absolute p-12 w-3/12 bg-black my-36 mx-auto right-0 left-0 text-white bg-opacity-80'>
         <h1 className='text-3xl font-bold py-4'>{isSignInForm ? "Sign In" : 'Sign Up'}</h1>
         {!isSignInForm && <input
           type='text'
