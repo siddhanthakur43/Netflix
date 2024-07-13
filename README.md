@@ -11,6 +11,10 @@ useRef Hook
 firebase setup
 deployment in firebase
 create sign up user account
+Sign In User API
+Redux Store: userSlice
+implement signOut
+updateProfile
 
 # Netflix design
 
