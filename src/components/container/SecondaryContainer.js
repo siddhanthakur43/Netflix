@@ -4,8 +4,6 @@ import MovieList from './MovieList'
 
 const SecondaryContainer = () => {
   const movies = useSelector(store => store?.movies)
-  console.log(movies, 'movies');
-
   return (
     <div className='bg-[#141414]'>
       <div className='-mt-52 relative z-30'>

@@ -5,7 +5,7 @@ Configured tailwind css
 Header
 Routing of form
 Login Form
-    sign in / sign up
+sign in / sign up
 form validation
 useRef Hook
 firebase setup
@@ -32,6 +32,11 @@ build Movie Card
 TMDB Image CDN URL
 Made the Browsre page amazing with Tailwind CSS
 usePopularMovies Custom hook
+Gpt Search Button
+GPT Search Page
+GPT Search Bar
+(BONUS) Multi-language Feature in our App
+
 
 
 
