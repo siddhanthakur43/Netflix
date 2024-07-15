@@ -36,6 +36,7 @@ Gpt Search Button
 GPT Search Page
 GPT Search Bar
 (BONUS) Multi-language Feature in our App
+//Platform.openai.com to generate key
 
 
 
